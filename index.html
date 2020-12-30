@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Saphire : Sandboxing PHP Applications with Tailored System Call Allowlists</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="vendor/custom.css" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/highlightjs/styles/default.css">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="./" data-toggle="tooltip" data-placement="bottom" title="Saphire">Saphire</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#introduction">Introduction
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#architecture">Architecture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#sourcecode">Source Code</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5 logo" data-toggle="tooltip" data-placement="top" title="Saphire">Saphire</h1>
+        <p class="lead">Sandboxing PHP Applications with Tailored System Call Allowlists</p>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="introduction"></a>
+        <h4 class="mt-1"><i class="fas fa-info"></i> Introduction</h1>
+        <p>
+			The main idea of software debloating is to reduce software's attack surface by removing pieces of code that are not required by users. In this study, we identify the current challenges with applying the principle of least privilege(PoLP) to interpreted PHP applications, and propose a novel generic approach to derive system-call policies automatically for individual interpreted programs. Our evaluation shows that Saphire can successfully prevents 21 historic remote code execution(RCE) exploits with negligible performance overhead (i.e., <2% in the worst case)
+		</p>
+        <p><i class="fas fa-file-pdf"></i> The paper is available at <a href="https://www.usenix.org/system/files/sec21summer_bulekov.pdf">https://www.usenix.org/system/files/sec21summer_bulekov.pdf</a></p>
+        <p>
+          <h6 class="mt-1"><i class="fas fa-file-powerpoint"></i> Slides</h1>
+              <ul>
+                  <li>
+					  The slides will be available after the presentation.
+                  </li>
+              </ul>
+      </p>
+      <p>
+        <h6 class="mt-1"><i class="fas fa-video"></i> Videos</h1>
+            <ul>
+                <li>
+                    The video will be available on the Usenix website.
+				</li>
+            </ul>
+    </p>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="architecture"></a>
+        <h4 class="mt-1"><i class="fas fa-layer-group"></i> Architecture</h1>
+        <p>
+          This system is comprised of three steps:<br />
+          <ul>
+            <li>
+              <b>"Map built-in PHP functions to system-calls"</b> In this step Saphire performs a static call-graph analysis over the PHP interpreter to create a mapping of PHP functions to system-calls. Saphire refines this mapping through a dynamic analysis over the PHP unit tests.
+            </li>
+            <li>
+              <b>"Create system-call filters for web app"</b> Saphire performs a static analysis to identify the PHP script's dependencies and determine the built-in PHP functions the interpreter can invoke while running scripts.
+            </li>
+            <li>
+              <b>"Sandboxing the interpreter and web application"</b> Saphire utilizes <i>seccomp</i> to deprivilege the PHP interpreter, before it executes a web app script. Saphire relies on a PHP extension to invoke Linux' <i>seccomp</i> upon each web requests.
+            </li>
+          </ul>
+        </p>
+      </div>
+    </div>
+
+    <!-- Source Code -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="sourcecode"></a>
+        <h4 class="mt-1"><i class="fas fa-code"></i> Source Code</h1>
+ 		The source will be avaiable soon.
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <hr />
+      </div>
+      <div class="col-lg-12">
+        <a class="anchor" name="about"></a>
+        <h4 class="mt-1"><i class="fas fa-users"></i> About</h1>
+        <p>We are a team of security researchers at SecLab, Boston University (<a target="_blank" href="https://seclab.bu.edu/">https://seclab.bu.edu/</a>).<br />For any queries or questions contact Alexander Bulekov at <a href="mailto:alxndr@bu.edu">alxndr@bu.edu</a> or Rasoul Jahanshahi at <a href="mailto:rasoulj@bu.edu">rasoulj@bu.edu</a></p>
+      </div>
+    </div>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/highlightjs/highlight.pack.js"></script>
+  <script>
+    $(document).ready(function(){
+        hljs.initHighlightingOnLoad();
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+
+</body>
+
+</html>
